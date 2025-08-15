@@ -1,10 +1,9 @@
-
 import React, { useState } from 'react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
-import type { ConsumptionTypeData, BarChartData } from '../../../types';
+import type { ConsumptionByTypeData, BarChartData } from '../../../types';
 
 interface ConsumptionByTypeProps {
-    data: ConsumptionTypeData;
+    data: ConsumptionByTypeData;
 }
 
 const formatChartData = (chartData: BarChartData) => {

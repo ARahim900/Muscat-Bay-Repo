@@ -65,14 +65,20 @@ export interface WaterOverviewData {
     doughnutChart: DoughnutChartData;
 }
 
-export interface WaterBalanceItem {
+export interface WaterMeterRecord {
+    meterLabel: string;
+    accountNumber: string;
     label: string;
-    value: string;
+    level: string; // L1, L2, L3, L4, DC
+    zone: string;
+    parentMeter: string;
+    type: string;
+    monthlyConsumption: Record<string, number>;
+    totalConsumption: number;
+    status: string;
+    children: WaterMeterRecord[];
 }
 
-export interface WaterLossItem extends WaterBalanceItem {
-    percentage: string;
-}
 
 export interface WaterLossAnalysisData {
      distributionTotals: {
@@ -92,22 +98,21 @@ export interface WaterLossAnalysisData {
 }
 
 
-export interface ZoneDetail {
-    description: string;
-    consumption: string;
-    loss: string;
-    pressure: string;
-}
-
 export interface ZoneAnalysisData {
     zones: string[];
-    zoneData: Record<string, ZoneDetail>;
+    zoneData: Record<string, {
+        description: string;
+        consumption: string;
+        loss: string;
+        pressure: string;
+    }>;
 }
 
-export interface ConsumptionTypeData {
+export interface ConsumptionByTypeData {
     types: string[];
     consumptionData: BarChartData;
 }
+
 
 export interface WaterDatabaseData {
     totalMeters: number;
@@ -116,13 +121,16 @@ export interface WaterDatabaseData {
     l3Meters: number;
 }
 
+
 export interface WaterSystemData {
     overview: WaterOverviewData;
     lossAnalysis: WaterLossAnalysisData;
     zoneAnalysis: ZoneAnalysisData;
-    consumptionType: ConsumptionTypeData;
+    consumptionType: ConsumptionByTypeData;
     database: WaterDatabaseData;
+    months: string[];
 }
+
 
 // --- New Types --- //
 
